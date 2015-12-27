@@ -4,6 +4,7 @@ var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var url = require('url');
 var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
 var app = express();
@@ -14,7 +15,11 @@ app.use('/', express.static(__dirname + '/www'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
-app.use(session({ secret: 'kogaidan' }));
+app.use(session({
+  secret: 'kogaidan',
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -45,7 +50,6 @@ passport.use(new TwitterStrategy({
 
 app.get('/dashboard', function(req, res) {
   if(passport.session && passport.session.id){
-    console.log(passport.session.id.profile);
     fs.readFile('./www/dashboard.html', 'utf8', function(error, html){
       res.send(html);
     });
@@ -63,17 +67,27 @@ app.get('/auth/twitter/callback',
   })
 );
 
-app.all('/api/*', function(req, res, next){
+app.all('/api/twitter/search', function(req, res){
   urlInfo = url.parse(req.url, true);
   res.contentType('json');
   res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
+ 
+  var query = encodeURIComponent(urlInfo.query.q);
 
-app.get('/api/twitter/search', function(req, res){
-  twitter.search(urlInfo, function(result){
-    res.send(result);
-  });
+  passport._strategies.twitter._oauth.getProtectedResource(
+    'https://api.twitter.com/1.1/search/tweets.json?q=' + query + '&count=100',
+    'GET',
+    app.get('token'),
+    app.get('tokenSecret'),
+    function(err, data) {
+      if(err){
+        res.status(500).send(err);
+        return;
+      }
+      res.send(data);
+    }
+  );
+
 });
 
 app.listen(app.get('port'), function() {

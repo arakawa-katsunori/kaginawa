@@ -5,9 +5,12 @@ export default class ImageList extends React.Component {
   render() {
     var tweetNodes = this.props.data.statuses.map((tweet)=> {
       return(
-        <Tweet screenName={tweet.user.screen_name}>
+        <Image
+          key={tweet.id + tweet.user.id}
+          screenName={tweet.user.screen_name}
+        >
           {tweet.text}
-        </Tweet>
+        </Image>
       );
     });
     return(
