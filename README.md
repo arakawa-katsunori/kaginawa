@@ -7,8 +7,8 @@ Node.js v4.2.3 を使用。
 - `$ npm install` -> パッケージインストール
 - `$ npm run dev` -> 実行
 
-### ディレクトリ
-- `imagesCollection/src/` -> フロントエンドソース
+### ファイル構成
+- `imagesCollection/src/*` -> フロントエンドソース
 - `imagesCollection/server.js` -> モックサーバ 
 
 ### 使用言語など
