@@ -14,4 +14,13 @@ Node.js v4.2.3 を使用。
 ### 使用言語など
 - ECMAScript6
 - Jade
-- Sass
+- Sass + CSSnext
+
+### ライブラリなど
+- React.js -> クライアントサイド
+- Express -> 開発用API提供
+- Passport -> OAuth認証
+
+### ビルドツールなど
+- Gulp
+- Webpack
