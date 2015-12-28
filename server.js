@@ -73,9 +73,16 @@ app.all('/api/twitter/search', function(req, res){
   res.header('Access-Control-Allow-Origin', '*');
  
   var query = encodeURIComponent(urlInfo.query.q);
+  var endPoint;
 
+  if(/^@/.test(urlInfo.query.q)){
+    endPoint = 'statuses/user_timeline.json?screen_name=';
+  }else{
+    endPoint = 'search/tweets.json?q='
+  }
+    
   passport._strategies.twitter._oauth.getProtectedResource(
-    'https://api.twitter.com/1.1/search/tweets.json?q=' + query + '&count=100',
+    'https://api.twitter.com/1.1/' + endPoint + query + '&count=100',
     'GET',
     app.get('token'),
     app.get('tokenSecret'),

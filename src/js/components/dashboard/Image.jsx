@@ -7,7 +7,9 @@ export default class Image extends React.Component {
         <h3 className='screenName'>
           {this.props.screenName}
         </h3>
-        <span>{this.props.children.toString()}</span>
+        <a href={'https://twitter.com/' + this.props.screenName + '/status/' + this.props.tweetLink} >
+          <img src={this.props.imageUrl}/>
+        </a>
       </div>
     );
   }
