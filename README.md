@@ -11,8 +11,8 @@ Node.js v4.2.3 を使用。
 - `$ npm run dev` -> 実行
 
 ### ファイル構成
-- `imagesCollection/src/*` -> フロントエンドソース
-- `imagesCollection/server.js` -> モックサーバ 
+- `./src/*` -> フロントエンドソース
+- `./server.js` -> モックサーバ 
 
 ### 使用言語など
 - ECMAScript6
