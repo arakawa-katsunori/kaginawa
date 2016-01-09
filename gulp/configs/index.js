@@ -37,7 +37,7 @@ module.exports = {
   },
 
   webpack: {
-    entry: src + '/js/' + fileName,
+    entry: src + '/jsx/' + fileName,
     output: {
       filename: 'bundle.js',
     },
