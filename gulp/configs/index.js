@@ -27,7 +27,7 @@ module.exports = {
 
   jade: {
     src: src + '/jade/**/!(_)*.jade',
-    dest: dest,
+    dest: dest + '/html',
     options: {pretty: true}
   },
 
