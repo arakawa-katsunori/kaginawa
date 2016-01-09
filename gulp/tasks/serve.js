@@ -6,9 +6,8 @@ var config = require('../configs/index');
 gulp.task('nodemon', function(cb) {
   var called = false;
   return nodemon({
-    script: 'server.js',
-    watch: ['server.js'],
-    ignore: ['./www', 'node_modules'],
+    script: './server/app.js',
+    watch: ['./server/'],
     env: {
       TZ: 'UTC',
       NODE_ENV: 'development'
