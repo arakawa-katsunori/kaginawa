@@ -19,7 +19,7 @@ var routes = (app, passport) => {
 
   app.get(['/search', '/search/tweets', '/search/account'], (req, res) => {
     if(passport.session && passport.session.id){
-      fs.readFile('./www/html/dashboard.html', 'utf8', (error, html) => {
+      fs.readFile('./www/html/search.html', 'utf8', (error, html) => {
         res.send(html);
       });
     } else {
