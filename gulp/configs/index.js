@@ -11,7 +11,7 @@ module.exports = {
   taskName : taskName,
 
   js: {
-    src: src + '/js/**/*',
+    src: src + '/jsx/**/*.jsx',
     dest: dest + '/assets/js',
     uglify: false
   },
