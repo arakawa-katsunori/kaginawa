@@ -8,7 +8,7 @@ export default class Dashboard extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      statuses: []
+      tweets: []
     };
   }
 
@@ -42,12 +42,18 @@ export default class Dashboard extends React.Component {
     });
   }
 
+  componentDidMount() {
+    this.searchKeyword('着てみた');
+  }
+
   render() {
     return(
       <div className='dashboard'>
         <header>
-          <SearchFormKeyword onSearchKeywordSubmit={this.searchKeyword.bind(this)} />
-          <SearchFormAccount onSearchAccountSubmit={this.searchAccount.bind(this)} />
+          <div className="header__forms clearfix">
+            <SearchFormKeyword onSearchKeywordSubmit={this.searchKeyword.bind(this)} />
+            <SearchFormAccount onSearchAccountSubmit={this.searchAccount.bind(this)} />
+          </div>
         </header>
         <ImageList data={this.state} />
       </div>

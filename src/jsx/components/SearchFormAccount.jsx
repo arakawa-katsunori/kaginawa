@@ -14,7 +14,7 @@ export default class SearchFormAccount extends React.Component {
     return(
       <form className='searchForm' onSubmit={this.handleSubmit.bind(this)}>
         <input type="text" placeholder="ユーザーID" ref="query" />
-        <input type="submit" value="検索" />
+        <button type="submit"><i className="fa fa-search"></i></button>
       </form>
     )
   }

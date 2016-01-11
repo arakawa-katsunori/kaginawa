@@ -1,8 +1,88 @@
-body
-  margin: 0px
+*
+  font-family: 'Lucida Grande','Hiragino Kaku Gothic ProN', Meiryo, sans-serif
+  font-size: 16px
+  text-decoration: none
+  box-sizing: border-box
+  line-height: 1.5em
 
-h1
-  color: #844
-h3
-  border-left: 10px solid #888
-  padding-left: 5px
+html, body, ul
+  margin: 0
+  padding: 0
+  width: 100%
+
+h1,h2,h3,h4
+  width: 100%
+  margin: 0
+  text-align: center
+  font-weight: bolder
+
+.clearfix
+  *zoom: 1
+  &::after
+    clear: both
+  &::before,
+  &::after
+    content: " "
+    display: table
+
+header
+  position: fixed
+  z-index: 1000
+  padding: 12px
+  width: 100%
+  background: #604784
+  color: #fff
+
+.header__forms
+  width: auto
+
+  form
+    float: left
+    margin-right: 12px
+
+  input
+    margin: 0 8px
+    padding: 4px 8px
+    border-radius: 18px
+
+  button
+    padding: 0
+    width: 28px
+    line-height: 28px
+    border: 1px solid #fff
+    border-radius: 50%
+    background: #604784
+    color: #fff
+    transition: .5s
+    &:hover
+      background: #fff
+      color: #604784
+
+.imageList
+  padding: 84px 24px
+
+  .image
+    position: relative
+    z-index: 100
+    float: left
+    padding: 2px
+    img
+      height: 180px
+      width: auto
+    input
+      display: none
+    label
+      position: absolute
+      top: 4px
+      right: 4px
+      height: 24px
+      width: 24px
+      border-radius: 50%
+      background: #888
+      color: #fff
+      opacity: .7
+      text-align: center
+    input:checked + label
+      background: #4d0
+      opacity: 1
+
