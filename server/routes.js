@@ -1,5 +1,6 @@
 var fs = require('fs');
 var url = require('url');
+var castJsonFormat = require('./helpers/castJsonFormat');
 
 var routes = (app, passport) => {
   app.get('/', (req, res) => {
@@ -42,7 +43,7 @@ var routes = (app, passport) => {
           res.status(500).send(err);
           return;
         }
-        res.send(data);
+        res.send(castJsonFormat.searchResult(data));
       }
     );
   });
