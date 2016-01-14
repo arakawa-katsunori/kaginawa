@@ -10,7 +10,8 @@ export default class Dashboard extends React.Component {
     super(props);
     this.state = {
       tweets: [],
-      query: ''
+      query: '',
+      selectedImageUrl: []
     };
   }
 
@@ -46,6 +47,18 @@ export default class Dashboard extends React.Component {
     });
   }
 
+  selectImages(value, checked) {
+    let array = this.state.selectedImageUrl;
+    if (checked) {
+      array.push(value);
+      this.setState({selectedImageUrl: array});
+    } else {
+      array.splice([array.indexOf(value)], 1);
+      this.setState({selectedImageUrl: array});
+    }
+    console.log(this.state.selectedImageUrl);
+  }
+
   componentWillMount() {
     this.searchKeyword('着てみた');
   }
@@ -60,7 +73,7 @@ export default class Dashboard extends React.Component {
             <SearchFormAccount onSearchAccountSubmit={this.searchAccount.bind(this)} />
           </div>
         </header>
-        <ImageList data={this.state} />
+        <ImageList data={this.state} onImageCheckboxChanged={this.selectImages.bind(this)} />
       </div>
     );
   }
