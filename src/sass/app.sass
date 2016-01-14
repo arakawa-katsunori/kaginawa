@@ -28,12 +28,17 @@ h1,h2,h3,h4
 header
   position: fixed
   z-index: 1000
-  padding: 12px
+  padding: 8px 0
   width: 100%
   background: #604784
   color: #fff
 
+.status
+  float: left
+  padding: 8px
+
 .header__forms
+  float: right
   width: auto
 
   form
@@ -42,8 +47,9 @@ header
 
   input
     margin: 0 8px
-    padding: 4px 8px
+    padding: 8px
     border-radius: 18px
+    line-height: 18px 
 
   button
     padding: 0
@@ -59,15 +65,13 @@ header
       color: #604784
 
 .imageList
-  padding: 84px 24px
-
+  padding: 84px 24px 24px
+  background: #aaa
   .image
     position: relative
     z-index: 100
     float: left
-    padding: 2px
     img
-      height: 180px
       width: auto
     input
       display: none
@@ -77,12 +81,14 @@ header
       right: 4px
       height: 24px
       width: 24px
+      border: 1px solid #fff
       border-radius: 50%
       background: #888
       color: #fff
       opacity: .7
       text-align: center
     input:checked + label
+      border: none
       background: #4d0
       opacity: 1
 

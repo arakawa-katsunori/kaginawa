@@ -2,17 +2,20 @@ import React from 'react'
 import ImageList from './ImageList'
 import SearchFormKeyword from './SearchFormKeyword'
 import SearchFormAccount from './SearchFormAccount'
+import Status from './Status'
 import $ from 'jquery'
 
 export default class Dashboard extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      tweets: []
+      tweets: [],
+      query: ''
     };
   }
 
   searchKeyword(query) {
+    this.setState({query: query});
     var query = encodeURIComponent(query);
     $.ajax({
       type: 'GET',
@@ -28,6 +31,7 @@ export default class Dashboard extends React.Component {
   }
 
   searchAccount(query) {
+    this.setState({query: query});
     var query = encodeURIComponent(query);
     $.ajax({
       type: 'GET',
@@ -42,7 +46,7 @@ export default class Dashboard extends React.Component {
     });
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.searchKeyword('着てみた');
   }
 
@@ -50,7 +54,8 @@ export default class Dashboard extends React.Component {
     return(
       <div className='dashboard'>
         <header>
-          <div className="header__forms clearfix">
+          <Status query={this.state.query} />
+          <div className='header__forms clearfix'>
             <SearchFormKeyword onSearchKeywordSubmit={this.searchKeyword.bind(this)} />
             <SearchFormAccount onSearchAccountSubmit={this.searchAccount.bind(this)} />
           </div>
