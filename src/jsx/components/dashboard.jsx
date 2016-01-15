@@ -68,6 +68,9 @@ export default class Dashboard extends React.Component {
       <div className='dashboard'>
         <header>
           <Status query={this.state.query} />
+          <div className='header__buttons'>
+            <a><i className="fa fa-download"></i></a>
+          </div>
           <div className='header__forms clearfix'>
             <SearchFormKeyword onSearchKeywordSubmit={this.searchKeyword.bind(this)} />
             <SearchFormAccount onSearchAccountSubmit={this.searchAccount.bind(this)} />
