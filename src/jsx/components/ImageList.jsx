@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from './image'
+import Image from './Image'
 
 export default class ImageList extends React.Component {
   constructor(props) {
