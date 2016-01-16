@@ -8,7 +8,7 @@ TwitterWebに存在する画像群は、右クリックからの保存が効か�
 ### 構築手順
 Node.js v4.2.3 を使用。
 - `$ npm install` -> パッケージインストール
-- `$ npm run watch` -> 実行
+- `$ gulp watch` -> 実行
 
 ### 環境変数
 [Twitter Application Management](https://apps.twitter.com) にアプリ登録を行い、環境変数に鍵の値を追加。
@@ -23,7 +23,7 @@ export KAGINAWA_CONSUMER_SECRET="fuga"
 
 ### ファイル構成
 - `kaginawa/src/*` -> フロントエンドソース
-- `kaginawa/server.js` -> モックサーバ 
+- `kaginawa/server/*` -> モックサーバ
 
 ### 使用言語など
 - ECMAScript6
