@@ -17,7 +17,7 @@ module.exports = {
   },
 
   sass: {
-    src: src + '/sass/**!(_)*.sass',
+    src: src + '/sass/**/!(_)*.sass',
     dest: dest + '/assets/css',
     cssnext: {
       browsers: ['last 2 versions']
