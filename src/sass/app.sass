@@ -54,7 +54,7 @@ header
 .header__buttons
   float: right
   margin: 0 8px
-  a
+  button
     display: block
     @extend .header__button
 
@@ -81,9 +81,9 @@ header
     z-index: 100
     float: left
     padding: 0 2px
-    transition: .2s
+    transition: .6s
     &:hover
-      opacity: .7
+      opacity: .9
     a
       display: block
     img
@@ -103,8 +103,11 @@ header
       color: #fff
       opacity: .5
       text-align: center
+      transition: .3s
+      &:hover
+        opacity: 1
     input:checked + label
-      border: none
+      border: 1px solid #4d0
       opacity: 1
       background: #4d0
       animation: clicked .3s ease
