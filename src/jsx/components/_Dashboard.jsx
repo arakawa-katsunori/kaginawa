@@ -3,6 +3,7 @@ import ImageList from './ImageList'
 import SearchFormKeyword from './SearchFormKeyword'
 import SearchFormAccount from './SearchFormAccount'
 import Status from './Status'
+import SaveAsZip from './SaveAsZip'
 import $ from 'jquery'
 
 export default class Dashboard extends React.Component {
@@ -13,6 +14,27 @@ export default class Dashboard extends React.Component {
       query: '',
       selectedImageUrl: []
     };
+  }
+
+  saveAsZip(json) {
+    json = JSON.parse(json);
+    console.log(json);
+  }
+
+  requestImages(array) {
+    $.ajax({
+      type: 'GET',
+      url: '/download.json',
+      dataType: 'json',
+      data: encodeURIComponent(JSON.stringify(array)),
+      success: (data) => {
+        this.saveAsZip(data);
+        console.log(data);
+      },
+      error: (xh4, status, err) => {
+        console.error(err);
+      }
+    });
   }
 
   searchKeyword(query) {
@@ -68,9 +90,7 @@ export default class Dashboard extends React.Component {
       <div className='dashboard'>
         <header>
           <Status query={this.state.query} />
-          <div className='header__buttons'>
-            <a><i className="fa fa-download"></i></a>
-          </div>
+          <SaveAsZip list={this.state.selectedImageUrl} onSaveButtonClicked={this.requestImages.bind(this)} />
           <div className='header__forms clearfix'>
             <SearchFormKeyword onSearchKeywordSubmit={this.searchKeyword.bind(this)} />
             <SearchFormAccount onSearchAccountSubmit={this.searchAccount.bind(this)} />
