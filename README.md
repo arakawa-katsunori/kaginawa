@@ -1,14 +1,13 @@
 # 忍具鉤縄
 忍者は画像を見つけて落とす。
 
-TwitterWebに存在する画像群は、右クリックからの保存が効かず、我々は手をこまねいていた。
-鉤縄はそれら画像群から必要な物を効率的に選択し、一括保存を実現する。
+Twitter検索やアカウントの投稿した画像を一括保存する。
 
 ## 開発環境
 ### 構築手順
 Node.js v4.2.3 を使用。
 - `$ npm install` -> パッケージインストール
-- `$ gulp watch` -> 実行
+- `$ npm run watch` -> 実行
 
 ### 環境変数
 [Twitter Application Management](https://apps.twitter.com) にアプリ登録を行い、環境変数に鍵の値を追加。
@@ -20,6 +19,13 @@ bashの場合 `~/.bash_profile` へ以下のように記述。
 export KAGINAWA_CONSUMER_KEY="hoge"
 export KAGINAWA_CONSUMER_SECRET="fuga"
 ```
+
+### callback URL
+
+Twitter OAuthからのcallback URLをブラウザからアクセスするポートに合わせて書き換えてください
+
+`callbackURL: 'http://localhost:4000/auth/twitter/callback'`
+https://github.com/puroguramah/kaginawa/blob/master/server/auth.js#L14
 
 ### ファイル構成
 - `kaginawa/src/*` -> フロントエンドソース
