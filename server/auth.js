@@ -11,7 +11,7 @@ var auth = (app, passport) => {
   passport.use(new TwitterStrategy({
       consumerKey: process.env.KAGINAWA_CONSUMER_KEY,
       consumerSecret: process.env.KAGINAWA_CONSUMER_SECRET,
-      callbackURL: 'http://localhost:4000/auth/twitter/callback'
+      callbackURL: 'http://localhost:4444/auth/twitter/callback'
     },
     (token, tokenSecret, profile, done) => {
       passport.session.id = profile.id;

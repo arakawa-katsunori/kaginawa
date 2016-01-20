@@ -8,7 +8,7 @@ var app = express();
 var auth = require('./auth');
 var routes = require('./routes');
 
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 3333));
 app.use('/assets', express.static('./www/assets/'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
