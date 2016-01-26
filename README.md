@@ -7,7 +7,7 @@ Twitter検索やアカウントの投稿した画像を一括保存する。
 ### 構築手順
 Node.js v4.2.3 を使用。
 - `$ npm install` -> パッケージインストール
-- `$ npm run watch` -> 実行
+- `$ npm start` -> ローカルで実行
 
 ### 環境変数
 [Twitter Application Management](https://apps.twitter.com) にアプリ登録を行い、環境変数に鍵の値を追加。

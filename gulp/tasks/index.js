@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp');
 
 gulp.task('default', [
@@ -7,10 +9,18 @@ gulp.task('default', [
   'copy'
 ]);
 
-gulp.task('watch', [
+gulp.task('run', [
   'jade',
   'sass',
   'script',
   'copy',
-  'serve'
+  'watch'
+]);
+
+gulp.task('build', [
+  'clean',
+  'jade',
+  'sass',
+  'script',
+  'copy'
 ]);

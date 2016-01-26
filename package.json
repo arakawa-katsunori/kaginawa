@@ -1,10 +1,10 @@
 {
-  "name": "react_redux",
-  "version": "1.0.0",
-  "description": "develop environment for react-redux with ES6",
+  "name": "kaginawa",
+  "version": "0.0.1",
+  "description": "downloader for twitter photos",
   "main": "index.js",
   "scripts": {
-    "watch": "gulp watch",
+    "start": "gulp run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "babel": {
@@ -13,57 +13,60 @@
     ]
   },
   "keywords": [
-    "React.js",
-    "Redux",
-    "ES6",
-    "gulp",
-    "webpack",
-    "babel"
+    "twitter"
   ],
   "author": "gutchom",
   "license": "ISC",
   "dependencies": {
-    "babel-core": "^6.3.17",
-    "babel-loader": "^6.2.0",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
     "body-parser": "^1.14.1",
     "cookie-parser": "^1.4.0",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-babel": "^6.1.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-if": "^2.0.0",
-    "gulp-jade": "^1.1.0",
-    "gulp-minify-css": "^1.2.2",
-    "gulp-nodemon": "^2.0.4",
-    "gulp-plumber": "^1.0.1",
-    "gulp-stylus": "^2.1.1",
-    "gulp-uglify": "^1.5.1",
-    "gulp-util": "^3.0.7",
     "jquery": "^2.1.4",
-    "jsx-loader": "^0.13.2",
     "marked": "^0.3.5",
-    "node-dev": "^2.7.1",
-    "node-libs-browser": "^0.5.3",
     "passport": "^0.3.2",
     "passport-twitter": "^1.0.3",
     "react": "^0.14.3",
     "react-core": "0.0.0",
-    "react-dom": "^0.14.3",
+    "react-dom": "^0.14.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.1",
+    "babel": "^6.3.13",
+    "babel-core": "^6.3.17",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "browser-sync": "^2.10.0",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-babel": "^6.1.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.0",
+    "gulp-if": "^2.0.0",
+    "gulp-jade": "^1.1.0",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-open": "^1.0.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-postcss": "^6.0.1",
+    "gulp-sass": "^2.1.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-stylus": "^2.1.1",
+    "gulp-uglify": "^1.5.1",
+    "gulp-util": "^3.0.7",
+    "jsx-loader": "^0.13.2",
+    "minimist": "^1.2.0",
+    "node-libs-browser": "^0.5.3",
     "require-dir": "^0.3.0",
     "webpack": "^1.12.9",
     "webpack-stream": "^3.0.1"
   },
-  "devDependencies": {
-    "babel": "^6.3.13",
-    "browser-sync": "^2.10.0",
-    "gulp-cssnext": "^1.0.1",
-    "gulp-open": "^1.0.0",
-    "gulp-sass": "^2.1.1",
-    "gulp-util": "^3.0.7",
-    "webpack-dev-server": "^1.14.0"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puroguramah/kaginawa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/puroguramah/kaginawa/issues"
+  },
+  "homepage": "https://github.com/puroguramah/kaginawa#readme"
 }

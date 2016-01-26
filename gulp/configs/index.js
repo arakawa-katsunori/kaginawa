@@ -13,22 +13,22 @@ module.exports = {
   js: {
     src: src + '/jsx/**/*.jsx',
     dest: dest + '/assets/js',
-    uglify: false
+    uglify: true
   },
 
   sass: {
     src: src + '/sass/**/!(_)*.sass',
     dest: dest + '/assets/css',
-    cssnext: {
+    autoprefixer: {
       browsers: ['last 2 versions']
     },
-    minify: false
+    minify: true
   },
 
   jade: {
     src: src + '/jade/**/!(_)*.jade',
     dest: dest + '/html',
-    options: {pretty: true}
+    options: {pretty: false}
   },
 
   copy: {

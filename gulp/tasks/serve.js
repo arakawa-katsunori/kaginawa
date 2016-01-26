@@ -32,7 +32,7 @@ gulp.task('browser-sync', ['nodemon'], function() {
   });
 });
 
-gulp.task('serve', ['browser-sync'], function() {
+gulp.task('watch', ['browser-sync'], function() {
   gulp.watch(config.js.src, ['script', browserSync.reload]);
   gulp.watch(config.jade.src, ['jade']);
   gulp.watch(config.sass.src, ['sass']);
