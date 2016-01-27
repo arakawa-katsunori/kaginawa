@@ -1,7 +1,9 @@
-var gulp = require('gulp');
-var jade = require('gulp-jade');
-var plumber = require('gulp-plumber');
-var config = require('../configs/index').jade;
+'use strict';
+
+const gulp = require('gulp');
+const jade = require('gulp-jade');
+const plumber = require('gulp-plumber');
+const config = require('../configs/index').jade;
 
 gulp.task('jade', function () {
   gulp.src(config.src)

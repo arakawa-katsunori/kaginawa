@@ -1,7 +1,9 @@
-var gulp = require('gulp');
-var nodemon = require('gulp-nodemon');
-var browserSync = require('browser-sync');
-var config = require('../configs/index');
+'use strict';
+
+const gulp = require('gulp');
+const nodemon = require('gulp-nodemon');
+const browserSync = require('browser-sync');
+const config = require('../configs/index');
 
 gulp.task('nodemon', function(cb) {
   var called = false;

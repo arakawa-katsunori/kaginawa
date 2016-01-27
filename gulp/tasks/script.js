@@ -1,9 +1,11 @@
-var gulp = require('gulp');
-var gulpif = require('gulp-if');
-var uglify = require('gulp-uglify');
-var plumber = require('gulp-plumber');
-var webpack = require('webpack-stream');
-var config = require('../configs/index');
+'use strict';
+
+const gulp = require('gulp');
+const gulpif = require('gulp-if');
+const uglify = require('gulp-uglify');
+const plumber = require('gulp-plumber');
+const webpack = require('webpack-stream');
+const config = require('../configs/index');
 
 gulp.task('script', function () {
   gulp.src(config.webpack.entry)

@@ -1,12 +1,18 @@
-var gulp = require('gulp');
-var plumber = require('gulp-plumber');
-var gulpif = require('gulp-if');
-var sass = require('gulp-sass');
-var postcss = require('gulp-postcss');
-var sourcemaps = require('gulp-sourcemaps');
-var autoprefixer = require('autoprefixer');
-var nano = require('gulp-cssnano');
-var config = require('../configs/index').sass;
+'use strict';
+
+const gulp = require('gulp');
+const plumber = require('gulp-plumber');
+const gulpif = require('gulp-if');
+const sass = require('gulp-sass');
+const postcss = require('gulp-postcss');
+const sourcemaps = require('gulp-sourcemaps');
+const autoprefixer = require('autoprefixer');
+const nano = require('gulp-cssnano');
+const minimist = require('minimist');
+const config = require('../configs/index').sass;
+
+const args = minimist(process.argv.slice(2));
+const env = args.env;
 
 gulp.task('sass', function () {
   gulp.src(config.src)
@@ -15,7 +21,7 @@ gulp.task('sass', function () {
     .pipe(sass())
     .pipe(postcss([ autoprefixer(config.autoprefixer) ]))
     .pipe(nano({discardComments: {removeAll: true}}))
-    .pipe(sourcemaps.write('.'))
+    .pipe(gulpif(!(env === 'production'), sourcemaps.write('.')))
     .pipe(gulp.dest(config.dest)
   ); 
 });

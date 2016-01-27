@@ -1,10 +1,10 @@
-var taskName = 'index';
-var fileName = taskName + '.jsx';
+const taskName = 'index';
+const fileName = taskName + '.jsx';
 
-var dest = './www';
-var src = './src';
+const dest = './www';
+const src = './src';
 
-var webpack = require('webpack');
+const webpack = require('webpack');
 
 module.exports = {
 
@@ -13,7 +13,7 @@ module.exports = {
   js: {
     src: src + '/jsx/**/*.jsx',
     dest: dest + '/assets/js',
-    uglify: true
+    uglify: false
   },
 
   sass: {
