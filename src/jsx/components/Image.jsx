@@ -21,14 +21,19 @@ export default class Image extends React.Component {
           value={this.props.imageUrl}
           onChange={this.handleChange.bind(this)}
         />
-        <label htmlFor={this.props.elemId}><i className="fa fa-check"></i></label>
-        <a href={'https://twitter.com/' + this.props.screenName + '/status/' + this.props.tweetLink} >
+        <label htmlFor={this.props.elemId} className='checkIcon'>
+          <i className="fa fa-check"></i>
+        </label>
+        <label htmlFor={this.props.elemId}>
+          <a href={'https://twitter.com/' + this.props.screenName + '/status/' + this.props.tweetLink} >
+            <i className="fa fa-info"></i>
+          </a>
           <img
             src={this.props.imageUrl}
             width={this.props.width+'px'}
             height={this.props.height+'px'}
           />
-        </a>
+        </label>
       </div>
     );
   }

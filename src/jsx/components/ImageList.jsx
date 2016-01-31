@@ -5,11 +5,11 @@ export default class ImageList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      boxWidth: window.innerWidth - 50
+      boxWidth: window.innerWidth - 2
     };
   }
   handleResize(e) {
-    this.setState({boxWidth: window.innerWidth - 50});
+    this.setState({boxWidth: window.innerWidth - 2});
   }
   componentDidMount() {
     window.addEventListener('resize', this.handleResize.bind(this));
@@ -20,7 +20,7 @@ export default class ImageList extends React.Component {
   render() {
     const defaultHeight = 180;
     const padding = 2;
-    const boxWidth = this.state.boxWidth;
+    let boxWidth = this.state.boxWidth;
     let imageWidthSum = 0;
     let currentLine = 1;
     let lineHeight = [];
