@@ -55,6 +55,11 @@ module.exports = {
       ),
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.AggressiveMergingPlugin(),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        }
+      }),
       new webpack.ProvidePlugin({
           jQuery: 'jquery',
           jquery: 'jquery',
