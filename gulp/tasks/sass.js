@@ -20,7 +20,7 @@ gulp.task('sass', function () {
     .pipe(sourcemaps.init())
     .pipe(sass())
     .pipe(postcss([ autoprefixer(config.autoprefixer) ]))
-    .pipe(nano({discardComments: {removeAll: true}}))
+    .pipe(gulpif((env === 'production'), nano({discardComments: {removeAll: true}})))
     .pipe(gulpif(!(env === 'production'), sourcemaps.write('.')))
     .pipe(gulp.dest(config.dest)
   ); 
