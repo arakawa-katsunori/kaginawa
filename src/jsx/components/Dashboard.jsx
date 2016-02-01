@@ -1,9 +1,8 @@
 import React from 'react'
 import ImageList from './ImageList'
-import SearchFormKeyword from './SearchFormKeyword'
-import SearchFormAccount from './SearchFormAccount'
 import Status from './Status'
 import SaveAsZip from './SaveAsZip'
+import SearchForm from './SearchForm'
 import $ from 'jquery'
 
 export default class Dashboard extends React.Component {
@@ -78,7 +77,6 @@ export default class Dashboard extends React.Component {
       array.splice([array.indexOf(value)], 1);
       this.setState({selectedImageUrl: array});
     }
-    console.log(this.state.selectedImageUrl);
   }
 
   componentWillMount() {
@@ -90,13 +88,21 @@ export default class Dashboard extends React.Component {
       <div className='dashboard'>
         <header>
           <Status query={this.state.query} />
-          <SaveAsZip list={this.state.selectedImageUrl} onSaveButtonClicked={this.requestImages.bind(this)} />
+          <SaveAsZip
+            list={this.state.selectedImageUrl}
+            onSaveButtonClicked={this.requestImages.bind(this)}
+          />
           <div className='header__forms clearfix'>
-            <SearchFormKeyword onSearchKeywordSubmit={this.searchKeyword.bind(this)} />
-            <SearchFormAccount onSearchAccountSubmit={this.searchAccount.bind(this)} />
+            <SearchForm
+              onAccountSubmit={this.searchAccount.bind(this)}
+              onKeywordSubmit={this.searchKeyword.bind(this)}
+            />
           </div>
         </header>
-        <ImageList data={this.state} onImageCheckboxChanged={this.selectImages.bind(this)} />
+        <ImageList
+          data={this.state}
+          onImageCheckboxChanged={this.selectImages.bind(this)}
+        />
       </div>
     );
   }
