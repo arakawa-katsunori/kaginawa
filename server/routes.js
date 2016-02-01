@@ -1,8 +1,10 @@
-var fs = require('fs');
-var url = require('url');
-var castJsonFormat = require('./helpers/castJsonFormat');
+'use strict';
 
-var routes = (app, passport) => {
+const fs = require('fs');
+const url = require('url');
+const castJsonFormat = require('./helpers/castJsonFormat');
+
+const routes = (app, passport) => {
   app.get('/', (req, res) => {
     fs.readFile('./www/html/index.html', 'utf8', (error, html) => {
       res.send(html);
@@ -28,13 +30,15 @@ var routes = (app, passport) => {
     }
   });
 
+  let twitterAPI = 'https://api.twitter.com/1.1/'
+
   app.get('/search/tweets.json', (req, res) => {
     urlInfo = url.parse(req.url, true);
     res.contentType('json');
     res.header('Access-Control-Allow-Origin', '*');
     var query = encodeURIComponent(urlInfo.query.q);
     passport._strategies.twitter._oauth.getProtectedResource(
-      `https://api.twitter.com/1.1/search/tweets.json?q=${query}&count=100`,
+      twitterAPI + 'search/tweets.json?q=' + query + '&count=100',
       'GET',
       app.get('token'),
       app.get('tokenSecret'),
@@ -54,7 +58,7 @@ var routes = (app, passport) => {
     res.header('Access-Control-Allow-Origin', '*');
     var query = encodeURIComponent(urlInfo.query.q);
     passport._strategies.twitter._oauth.getProtectedResource(
-      `https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=${query}&count=100`,
+      twitterAPI + 'statuses/user_timeline.json?screen_name=' + query + '&count=100',
       'GET',
       app.get('token'),
       app.get('tokenSecret'),

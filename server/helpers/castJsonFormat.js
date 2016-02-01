@@ -1,4 +1,5 @@
 'use strict'
+
 const searchResult = (json) => {
   json = JSON.parse(json);
   let result = {tweets: [], next_results: ''};
