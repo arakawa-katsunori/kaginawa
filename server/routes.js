@@ -33,10 +33,10 @@ const routes = (app, passport) => {
   let twitterAPI = 'https://api.twitter.com/1.1/'
 
   app.get('/search/tweets.json', (req, res) => {
-    urlInfo = url.parse(req.url, true);
+    let urlInfo = url.parse(req.url, true);
     res.contentType('json');
     res.header('Access-Control-Allow-Origin', '*');
-    var query = encodeURIComponent(urlInfo.query.q);
+    let query = encodeURIComponent(urlInfo.query.q);
     passport._strategies.twitter._oauth.getProtectedResource(
       twitterAPI + 'search/tweets.json?q=' + query + '&count=100',
       'GET',
@@ -53,10 +53,10 @@ const routes = (app, passport) => {
   });
 
   app.get('/search/account.json', (req, res) => {
-    urlInfo = url.parse(req.url, true);
+    let urlInfo = url.parse(req.url, true);
     res.contentType('json');
     res.header('Access-Control-Allow-Origin', '*');
-    var query = encodeURIComponent(urlInfo.query.q);
+    let query = encodeURIComponent(urlInfo.query.q);
     passport._strategies.twitter._oauth.getProtectedResource(
       twitterAPI + 'statuses/user_timeline.json?screen_name=' + query + '&count=100',
       'GET',
