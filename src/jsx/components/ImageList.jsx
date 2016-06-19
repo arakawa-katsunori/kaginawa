@@ -5,11 +5,11 @@ export default class ImageList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      boxWidth: window.innerWidth - 2
+      boxWidth: window.innerWidth - 1
     };
   }
   handleResize(e) {
-    this.setState({boxWidth: window.innerWidth - 2});
+    this.setState({boxWidth: window.innerWidth - 1});
   }
   componentDidMount() {
     window.addEventListener('resize', this.handleResize.bind(this));
@@ -19,19 +19,20 @@ export default class ImageList extends React.Component {
   }
   render() {
     const defaultHeight = 180;
-    const padding = 2;
+    const margin = 2;
     let boxWidth = this.state.boxWidth;
     let imageWidthSum = 0;
     let currentLine = 1;
     let lineHeight = [];
 
     let prepare = this.props.data.tweets.map((tweet) => {
-      let imageWidth = padding * 2 + tweet.entities.media[0].sizes.large.w / (tweet.entities.media[0].sizes.large.h / defaultHeight);
+      let imageWidth = tweet.entities.media[0].sizes.large.w / (tweet.entities.media[0].sizes.large.h / defaultHeight);
       let result = {
         key: tweet.id + tweet.user.id,
-        elemId: tweet.id,
+        id: tweet.id,
+        screenName: tweet.user.screen_name,
         imageUrl: tweet.entities.media[0].media_url,
-        tweetLink: tweet.id_str,
+        id_str: tweet.id_str,
         width: imageWidth,
         line: currentLine
       };
@@ -49,12 +50,14 @@ export default class ImageList extends React.Component {
       return(
         <Image
           key={tweet.key}
-          elemId={tweet.elemId}
+          tweetId={tweet.id}
+          tweetIdStr={tweet.id_str}
           imageUrl={tweet.imageUrl}
-          tweetLink={tweet.tweetLink}
-          width={tweet.width}
+          tweetLink={'https://twitter.com/' + tweet.screenName + '/status/' + tweet.id_str}
+          width={tweet.width * (lineHeight[tweet.line] / defaultHeight) - (margin * 2)}
           height={lineHeight[tweet.line] || defaultHeight}
-          onImageCheckboxChanged={this.props.onImageCheckboxChanged.bind(this)}
+          onCheckboxChanged={this.props.onCheckboxChanged.bind(this)}
+          onShowButtonClicked={this.props.onShowButtonClicked.bind(this)}
         />
       );
     });

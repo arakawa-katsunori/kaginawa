@@ -1,17 +1,19 @@
 import React from 'react'
 import ImageList from './ImageList'
+import Showcase from './Showcase'
 import Status from './Status'
 import SaveAsZip from './SaveAsZip'
 import SearchForm from './SearchForm'
 import $ from 'jquery'
 
-export default class Dashboard extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tweets: [],
       query: '',
-      selectedImageUrl: []
+      selectedImageUrl: [],
+      showImageId: null
     };
   }
 
@@ -79,6 +81,10 @@ export default class Dashboard extends React.Component {
     }
   }
 
+  imageShowcase(id) {
+    this.setState({showImageId: id});
+  }
+
   componentWillMount() {
     this.searchKeyword('着てみた');
   }
@@ -86,6 +92,10 @@ export default class Dashboard extends React.Component {
   render() {
     return(
       <div className='dashboard'>
+        <Showcase
+          tweets={this.state.tweets}
+          targetId={this.state.showImageId}
+        />
         <header>
           <Status query={this.state.query} />
           <SaveAsZip
@@ -101,7 +111,8 @@ export default class Dashboard extends React.Component {
         </header>
         <ImageList
           data={this.state}
-          onImageCheckboxChanged={this.selectImages.bind(this)}
+          onCheckboxChanged={this.selectImages.bind(this)}
+          onShowButtonClicked={this.imageShowcase.bind(this)}
         />
       </div>
     );
