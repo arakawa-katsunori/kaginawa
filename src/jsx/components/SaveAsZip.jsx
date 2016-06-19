@@ -8,7 +8,7 @@ export default class SaveAsZip extends React.Component {
   render() {
     return(
       <div className='header__buttons'>
-        <button onClick={this.handleClick.bind(this)}><i className="fa fa-download"></i></button>
+        <button onClick={this.handleClick.bind(this)}><i className="fa fa-download" /></button>
       </div>
 
     );

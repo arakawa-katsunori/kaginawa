@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { findDOMNode } from 'react-dom'
 
 export default class SearchForm extends React.Component {
   constructor(props) {
@@ -15,13 +15,13 @@ export default class SearchForm extends React.Component {
 
   handleChange(e) {
     this.setState({
-      searchType: ReactDOM.findDOMNode(this.refs.inputType).value
+      searchType: findDOMNode(this.refs.inputType).value
     });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    let query = ReactDOM.findDOMNode(this.refs.query).value.trim();
+    let query = findDOMNode(this.refs.query).value.trim();
     if (!query) return;
     switch (this.state.searchType) {
       case 'account':
@@ -34,7 +34,7 @@ export default class SearchForm extends React.Component {
         this.props.onKeywordSubmit(query);
         break;
     }
-    ReactDOM.findDOMNode(this.refs.query).value = '';
+    findDOMNode(this.refs.query).value = '';
   }
 
   render() {
@@ -45,7 +45,7 @@ export default class SearchForm extends React.Component {
         onSubmit={this.handleSubmit.bind(this)}
       >
         <button type='button'>
-          <i className='fa fa-caret-down'></i>
+          <i className='fa fa-caret-down' />
           <select ref='inputType'>
             <option value='keyword'>キーワード検索</option>
             <option value='account'>アカウント検索</option>
@@ -56,7 +56,7 @@ export default class SearchForm extends React.Component {
           ref='query'
           placeholder={this.state.placeholder[this.state.searchType]}
         />
-        <button type='submit'><i className='fa fa-search'></i></button>
+        <button type='submit'><i className='fa fa-search' /></button>
       </form>
     )
   };
