@@ -11,9 +11,8 @@ module.exports = {
   taskName : taskName,
 
   js: {
-    src: src + '/jsx/**/*.jsx',
-    dest: dest + '/assets/js',
-    uglify: false
+    src: src + '/jsx/**/*',
+    dest: dest + '/assets/js'
   },
 
   sass: {
@@ -25,8 +24,8 @@ module.exports = {
     minify: true
   },
 
-  jade: {
-    src: src + '/jade/**/!(_)*.jade',
+  pug: {
+    src: src + '/jade/**/!(_)*.pug',
     dest: dest + '/html',
     options: {pretty: false}
   },
@@ -39,7 +38,7 @@ module.exports = {
   webpack: {
     entry: src + '/jsx/' + fileName,
     output: {
-      filename: 'bundle.js',
+      filename: 'bundle.js'
     },
     resolve: {
       extensions: ['', '.js', '.jsx'],
@@ -55,11 +54,13 @@ module.exports = {
       ),
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.AggressiveMergingPlugin(),
+      /*
       new webpack.optimize.UglifyJsPlugin({
         compress: {
           warnings: false
         }
       }),
+      */
       new webpack.ProvidePlugin({
           jQuery: 'jquery',
           jquery: 'jquery',

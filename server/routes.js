@@ -6,31 +6,27 @@ const castJsonFormat = require('./helpers/castJsonFormat');
 
 const routes = (app, passport) => {
   app.get('/', (req, res) => {
-    fs.readFile('./www/html/index.html', 'utf8', (error, html) => {
-      res.send(html);
-    });
+    if(passport.session && passport.session.id){
+      fs.readFile('./www/html/index.html', 'utf8', (error, html) => {
+        res.send(html);
+      });
+    } else {
+      fs.readFile('./www/html/login.html', 'utf8', (error, html) => {
+        res.send(html);
+      });
+    }
   });
 
   app.get('/auth/twitter', passport.authenticate('twitter'));
 
   app.get('/auth/twitter/callback',
     passport.authenticate('twitter', {
-      successRedirect: '/search',
+      successRedirect: '/',
       failureRedirect: '/'
     })
   );
 
-  app.get(['/search', '/search/tweets', '/search/account'], (req, res) => {
-    if(passport.session && passport.session.id){
-      fs.readFile('./www/html/search.html', 'utf8', (error, html) => {
-        res.send(html);
-      });
-    } else {
-      res.redirect('/');
-    }
-  });
-
-  let twitterAPI = 'https://api.twitter.com/1.1/'
+  const twitterAPI = 'https://api.twitter.com/1.1/'
 
   app.get('/search/tweets.json', (req, res) => {
     let urlInfo = url.parse(req.url, true);

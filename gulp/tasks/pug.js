@@ -1,13 +1,13 @@
 'use strict';
 
 const gulp = require('gulp');
-const jade = require('gulp-jade');
+const pug = require('gulp-pug');
 const plumber = require('gulp-plumber');
-const config = require('../configs/index').jade;
+const config = require('../configs/index').pug;
 
-gulp.task('jade', function () {
+gulp.task('pug', function () {
   gulp.src(config.src)
     .pipe(plumber())
-    .pipe(jade(config.options))
+    .pipe(pug(config.options))
     .pipe(gulp.dest(config.dest)); 
 });

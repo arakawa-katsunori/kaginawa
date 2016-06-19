@@ -11,6 +11,5 @@ gulp.task('script', function () {
   gulp.src(config.webpack.entry)
     .pipe(plumber())
     .pipe(webpack(config.webpack))
-    .pipe(gulpif(config.js.uglify, uglify()))
     .pipe(gulp.dest(config.js.dest)); 
 });

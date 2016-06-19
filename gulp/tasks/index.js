@@ -3,14 +3,14 @@
 const gulp = require('gulp');
 
 gulp.task('default', [
-  'jade',
+  'pug',
   'sass',
   'script',
   'copy'
 ]);
 
 gulp.task('run', [
-  'jade',
+  'pug',
   'sass',
   'script',
   'copy',
@@ -19,7 +19,7 @@ gulp.task('run', [
 
 gulp.task('build', [
   'clean',
-  'jade',
+  'pug',
   'sass',
   'script',
   'copy'
