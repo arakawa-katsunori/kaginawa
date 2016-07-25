@@ -40,7 +40,7 @@ export default class SearchForm extends React.Component {
   render() {
     return(
       <form
-        className='searchForm'
+        className='search_form'
         onChange={this.handleChange.bind(this)}
         onSubmit={this.handleSubmit.bind(this)}
       >

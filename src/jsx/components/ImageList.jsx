@@ -62,7 +62,7 @@ export default class ImageList extends React.Component {
       );
     });
     return(
-      <div className='imageList clearfix' ref='imageList'>
+      <div className='container clearfix' ref='imageList'>
         {tweetNodes}
       </div>
     );
