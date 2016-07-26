@@ -3,38 +3,38 @@ import { findDOMNode } from 'react-dom'
 
 export default class SearchForm extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       searchType: 'keyword',
       placeholder: {
         keyword: 'キーワード検索',
         account: 'アカウント検索'
       }
-    };
+    }
   }
 
-  handleChange(e) {
+  handleChange() {
     this.setState({
       searchType: findDOMNode(this.refs.inputType).value
-    });
+    })
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    let query = findDOMNode(this.refs.query).value.trim();
+  handleSubmit(event) {
+    event.preventDefault()
+    let query = findDOMNode(this.refs.query).value.trim()
     if (!query) return;
     switch (this.state.searchType) {
       case 'account':
-        this.props.onAccountSubmit(query);
+        this.props.onAccountSubmit(query)
         break;
       case 'keyword':
-        this.props.onKeywordSubmit(query);
+        this.props.onKeywordSubmit(query)
         break;
       default:
-        this.props.onKeywordSubmit(query);
+        this.props.onKeywordSubmit(query)
         break;
     }
-    findDOMNode(this.refs.query).value = '';
+    findDOMNode(this.refs.query).value = ''
   }
 
   render() {
@@ -59,5 +59,5 @@ export default class SearchForm extends React.Component {
         <button type='submit'><i className='fa fa-search' /></button>
       </form>
     )
-  };
+  }
 }

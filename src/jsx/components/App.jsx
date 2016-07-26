@@ -8,18 +8,18 @@ import $ from 'jquery'
 
 export default class App extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       tweets: [],
       query: '',
       selectedImageUrl: [],
       showImageId: null
-    };
+    }
   }
 
   saveAsZip(json) {
-    json = JSON.parse(json);
-    console.log(json);
+    json = JSON.parse(json)
+    console.log(json)
   }
 
   requestImages(array) {
@@ -29,29 +29,29 @@ export default class App extends React.Component {
       dataType: 'json',
       data: encodeURIComponent(JSON.stringify(array)),
       success: (data) => {
-        this.saveAsZip(data);
-        console.log(data);
+        this.saveAsZip(data)
+        console.log(data)
       },
       error: (xh4, status, err) => {
-        console.error(err);
+        console.error(err)
       }
     });
   }
 
   searchKeyword(query) {
-    this.setState({query: query});
-    var query = encodeURIComponent(query);
+    this.setState({query: query})
+    var query = encodeURIComponent(query)
     $.ajax({
       type: 'GET',
       url: '/search/tweets.json?q=' + query,
       dataType: 'json',
-      success: (data) => {
-        this.setState(data);
+      success: data => {
+        this.setState(data)
       },
       error: (xhr, status, err) => {
-        console.error(err);
+        console.error(err)
       }
-    });
+    })
   }
 
   searchAccount(query) {
@@ -71,22 +71,22 @@ export default class App extends React.Component {
   }
 
   selectImages(value, checked) {
-    let array = this.state.selectedImageUrl;
+    let array = this.state.selectedImageUrl
     if (checked) {
-      array.push(value);
-      this.setState({selectedImageUrl: array});
+      array.push(value)
+      this.setState({selectedImageUrl: array})
     } else {
-      array.splice([array.indexOf(value)], 1);
-      this.setState({selectedImageUrl: array});
+      array.splice([array.indexOf(value)], 1)
+      this.setState({selectedImageUrl: array})
     }
   }
 
   imageShowcase(id) {
-    this.setState({showImageId: id});
+    this.setState({showImageId: id})
   }
 
   componentWillMount() {
-    this.searchKeyword('着てみた');
+    this.searchKeyword('着てみた')
   }
 
   render() {
