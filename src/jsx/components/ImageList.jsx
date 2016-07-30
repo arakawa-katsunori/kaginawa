@@ -56,7 +56,6 @@ export default class ImageList extends React.Component {
           tweetLink={'https://twitter.com/' + tweet.screenName + '/status/' + tweet.id_str}
           width={tweet.width * (lineHeight[tweet.line] / defaultHeight) - (margin * 2)}
           height={lineHeight[tweet.line] || defaultHeight}
-          onCheckboxChanged={this.props.onCheckboxChanged.bind(this)}
           onShowButtonClicked={this.props.onShowButtonClicked.bind(this)}
         />
       )

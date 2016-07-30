@@ -1,0 +1,2 @@
+export const SELECT_IMAGE = 'SELECT_IMAGE'
+export const UNSELECT_IMAGE = 'UNSELECT_IMAGE'

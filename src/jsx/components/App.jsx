@@ -12,7 +12,6 @@ export default class App extends React.Component {
     this.state = {
       tweets: [],
       query: '',
-      selectedImageUrl: [],
       showImageId: null
     }
   }
@@ -70,17 +69,6 @@ export default class App extends React.Component {
     });
   }
 
-  selectImages(value, checked) {
-    let array = this.state.selectedImageUrl
-    if (checked) {
-      array.push(value)
-      this.setState({selectedImageUrl: array})
-    } else {
-      array.splice([array.indexOf(value)], 1)
-      this.setState({selectedImageUrl: array})
-    }
-  }
-
   imageShowcase(id) {
     this.setState({showImageId: id})
   }
@@ -111,7 +99,6 @@ export default class App extends React.Component {
         </header>
         <ImageList
           data={this.state}
-          onCheckboxChanged={this.selectImages.bind(this)}
           onShowButtonClicked={this.imageShowcase.bind(this)}
         />
       </div>

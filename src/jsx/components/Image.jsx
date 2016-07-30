@@ -1,10 +1,25 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+import { addImage, deleteImage } from '../actions'
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addImage: url => dispatch(addImage(url)),
+    deleteImage: url => dispatch(deleteImage(url))
+  }
+}
 
 export default class Image extends React.Component {
   handleChange(event) {
-    let value = event.target.value
-    let checked = event.target.checked
-    this.props.onCheckboxChanged(value, checked)
+    const url = event.target.value
+    const checked = event.target.checked
+
+    if (checked) {
+      this.props.addImage(url)
+    } else {
+      this.props.deleteImage(url)
+    }
   }
 
   handleClickShowcase(event) {
@@ -71,3 +86,8 @@ export default class Image extends React.Component {
     )
   }
 }
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Image)

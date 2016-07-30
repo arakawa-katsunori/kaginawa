@@ -7,11 +7,14 @@ import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-rou
 
 import thunk from 'redux-thunk'
 
+import * as reducers from './reducers'
+
 import App from './components/App'
 import Showcase from './components/Showcase'
 
 const store = createStore(
   combineReducers({
+    imageList: reducers.selectedImages,
     routing: routerReducer
   }),
   compose(
