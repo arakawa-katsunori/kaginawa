@@ -56,29 +56,16 @@ export default class Image extends React.Component {
           />
         </label>
         <div className='image_menu'>
-          <a
-            className='image_menu__links'
-            onClick={this.handleClickShowcase.bind(this)}
-          >
+          <a className='image_menu__links' onClick={this.handleClickShowcase.bind(this)} >
             <i className='fa fa-film' />
           </a>
-          <a
-            className='image_menu__links'
-            href={this.props.tweetLink}
-            target='_blank'
-          >
+          <a className='image_menu__links' href={this.props.tweetLink} target='_blank' >
             <i className='fa fa-twitter' />
           </a>
-          <a
-            className='image_menu__links'
-            onClick={(event, url) => this.openNewWindow(event, favoriteUrl)}
-          >
+          <a className='image_menu__links' onClick={(event, url) => this.openNewWindow(event, favoriteUrl)} >
             <i className='fa fa-heart' />
           </a>
-          <a
-            className='image_menu__links'
-            onClick={(event, url) => this.openNewWindow(event, retweetUrl)}
-          >
+          <a className='image_menu__links' onClick={(event, url) => this.openNewWindow(event, retweetUrl)} >
             <i className='fa fa-retweet' />
           </a>
         </div>
