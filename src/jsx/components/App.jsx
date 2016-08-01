@@ -102,6 +102,6 @@ export default class App extends React.Component {
           onShowButtonClicked={this.imageShowcase.bind(this)}
         />
       </div>
-    );
+    )
   }
 }

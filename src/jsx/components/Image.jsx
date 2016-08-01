@@ -42,7 +42,7 @@ export default class Image extends React.Component {
           name='selectImages'
           id={this.props.tweetId}
           value={this.props.imageUrl}
-          onChange={this.handleChange.bind(this)}
+          onChange={ event => this.handleChange(event) }
         />
         <label htmlFor={this.props.tweetId} className='check_icon'>
           <i className='fa fa-check' />
@@ -56,16 +56,16 @@ export default class Image extends React.Component {
           />
         </label>
         <div className='image_menu'>
-          <a className='image_menu__links' onClick={this.handleClickShowcase.bind(this)} >
+          <a className='image_menu__links' onClick={ event => this.handleClickShowcase(event) } >
             <i className='fa fa-film' />
           </a>
           <a className='image_menu__links' href={this.props.tweetLink} target='_blank' >
             <i className='fa fa-twitter' />
           </a>
-          <a className='image_menu__links' onClick={(event, url) => this.openNewWindow(event, favoriteUrl)} >
+          <a className='image_menu__links' onClick={ (event, url) => this.openNewWindow(event, favoriteUrl) } >
             <i className='fa fa-heart' />
           </a>
-          <a className='image_menu__links' onClick={(event, url) => this.openNewWindow(event, retweetUrl)} >
+          <a className='image_menu__links' onClick={ (event, url) => this.openNewWindow(event, retweetUrl) } >
             <i className='fa fa-retweet' />
           </a>
         </div>
