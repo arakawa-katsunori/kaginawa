@@ -16,6 +16,10 @@ export default function fetchedItems(state = {
         tweets: [...state.tweets, ...action.tweets],
         nextResults: action.nextResults
       })
+    case types.SEARCH_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false
+      })
     case types.DELETE_SEARCH:
       return Object.assign({}, state, {
         isFetching: false,
