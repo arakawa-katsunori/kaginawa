@@ -7,6 +7,12 @@ function requestSearch() {
   }
 }
 
+function failureSearch() {
+  return {
+    type: types.SEARCH_FAILURE
+  }
+}
+
 function receiveSearch(json) {
   return {
     type: types.SEARCH_SUCCESS,
@@ -20,6 +26,10 @@ export function search(query, endpoint) {
     dispatch(requestSearch())
     return axios.get(`/search/${endpoint}.json${query}`)
       .then(res => dispatch(receiveSearch(res.data)))
+      .catch(err => {
+        console.log(err)
+        dispatch(failureSearch())
+      })
   }
 }
 
