@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Image from './Image'
-import { search } from '../actions/search'
+import { search } from '../../actions/search'
 
 const mapStateToProps = state => {
   return {
@@ -26,7 +26,6 @@ class ImageList extends React.Component {
     }
   }
   componentDidMount() {
-    this.props.search('?q=着てみた', 'tweets') //TODO: remove in production
     window.addEventListener('resize', this.handleResize.bind(this))
     window.addEventListener('scroll', this.handleScroll.bind(this))
   }
@@ -103,7 +102,7 @@ class ImageList extends React.Component {
           {tweetNodes}
         </div>
         <div className='images__continue_bar' onClick={ event => this.handleContinue(event) }>
-          { this.props.isFetching ? <i className='fa fa-spinner fa-pulse' /> : <a>続きを表示</a> }
+          { this.props.isFetching ? <i className='fa fa-spinner fa-pulse' /> : this.props.nextResults ? <a>続きを表示</a> : <span/> }
         </div>
       </div>
     )

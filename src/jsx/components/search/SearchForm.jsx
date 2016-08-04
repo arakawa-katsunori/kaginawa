@@ -2,7 +2,7 @@ import React from 'react'
 import { findDOMNode } from 'react-dom'
 import { connect } from 'react-redux'
 
-import { search, deleteSearch } from '../actions/search'
+import { search, deleteSearch } from '../../actions/search'
 
 const mapStateToProps = state => {
   return {

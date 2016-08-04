@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { addImage, deleteImage } from '../actions'
+import { addImage, deleteImage } from '../../actions'
 
 const mapDispatchToProps = dispatch => {
   return {

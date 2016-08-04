@@ -10,8 +10,8 @@ import thunk from 'redux-thunk'
 import selectedImages from './reducers/selectedImages'
 import fetchedItems from './reducers/search'
 
-import App from './components/App'
-import Showcase from './components/Showcase'
+import App from './components/search/App'
+import Showcase from './components/search/Showcase'
 
 const store = createStore(
   combineReducers({
@@ -31,10 +31,8 @@ render(
   <Provider store={store}>
     <Router history={history}>
       <Route path='/' component={App}>
-        <Route path='search'>
-          <Route path=':imageId' component={Showcase}/>
-        </Route>
+        <Route path=':imageId' component={Showcase}/>
       </Route>
     </Router>
   </Provider>
-, document.getElementById('app'));
+, document.getElementById('app'))
