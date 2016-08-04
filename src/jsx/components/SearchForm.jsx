@@ -1,63 +1,72 @@
 import React from 'react'
 import { findDOMNode } from 'react-dom'
+import { connect } from 'react-redux'
 
-export default class SearchForm extends React.Component {
+import { search, deleteSearch } from '../actions/search'
+
+const mapStateToProps = state => {
+  return {
+    isFetching: state.fetchedItems.isFetching
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    search: (query, endpoint) => dispatch(search(query, endpoint)),
+    deleteSearch: () => dispatch(deleteSearch())
+  }
+}
+
+class SearchForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchType: 'keyword',
-      placeholder: {
-        keyword: 'キーワード検索',
-        account: 'アカウント検索'
-      }
+      placeholder: 'キーワード検索'
     }
-  }
-
-  handleChange() {
-    this.setState({
-      searchType: findDOMNode(this.refs.inputType).value
-    })
   }
 
   handleSubmit(event) {
     event.preventDefault()
+    if(this.props.isFetching) return
+
     let query = findDOMNode(this.refs.query).value.trim()
-    if (!query) return;
-    switch (this.state.searchType) {
-      case 'account':
-        this.props.onAccountSubmit(query)
-        break;
-      case 'keyword':
-        this.props.onKeywordSubmit(query)
-        break;
+    let firstChar = query.charAt(0)
+
+    this.setState({placeholder: query})
+
+    this.props.deleteSearch()
+    switch (firstChar) {
+      case '@':
+        query = query.substr(1)
+        query = '?q='+query
+        this.props.search(query, 'account')
+        break
       default:
-        this.props.onKeywordSubmit(query)
-        break;
+        query = '?q='+query
+        this.props.search(query, 'tweets')
     }
-    findDOMNode(this.refs.query).value = ''
   }
 
   render() {
     return(
       <form
         className='search_form'
-        onChange={this.handleChange.bind(this)}
-        onSubmit={this.handleSubmit.bind(this)}
+        onSubmit={ event => this.handleSubmit(event) }
       >
-        <button type='button'>
-          <i className='fa fa-caret-down' />
-          <select ref='inputType'>
-            <option value='keyword'>キーワード検索</option>
-            <option value='account'>アカウント検索</option>
-          </select>
-        </button>
         <input
           type='text'
           ref='query'
-          placeholder={this.state.placeholder[this.state.searchType]}
+          placeholder={this.state.placeholder}
         />
-        <button type='submit'><i className='fa fa-search' /></button>
+        <button type='submit'>
+          { this.props.isFetching ? <i className='fa fa-spinner fa-pulse' /> : <i className='fa fa-search' /> }
+        </button>
       </form>
     )
   }
 }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchForm)

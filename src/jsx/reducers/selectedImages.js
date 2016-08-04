@@ -4,7 +4,7 @@ const initialState = {
   links: []
 }
 
-export function selectedImages(state = initialState, action = null) {
+export default function selectedImages(state = initialState, action = null) {
   switch (action.type) {
     case types.SELECT_IMAGE:
       return Object.assign({}, state, {

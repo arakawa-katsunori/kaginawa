@@ -7,14 +7,16 @@ import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-rou
 
 import thunk from 'redux-thunk'
 
-import * as reducers from './reducers'
+import selectedImages from './reducers/selectedImages'
+import fetchedItems from './reducers/search'
 
 import App from './components/App'
 import Showcase from './components/Showcase'
 
 const store = createStore(
   combineReducers({
-    imageList: reducers.selectedImages,
+    selectedImages: selectedImages,
+    fetchedItems: fetchedItems,
     routing: routerReducer
   }),
   compose(

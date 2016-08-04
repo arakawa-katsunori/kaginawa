@@ -32,15 +32,15 @@ const routes = (app, passport) => {
     let urlInfo = url.parse(req.url, true);
     res.contentType('json');
     res.header('Access-Control-Allow-Origin', '*');
-    let query = encodeURIComponent(urlInfo.query.q);
     passport._strategies.twitter._oauth.getProtectedResource(
-      twitterAPI + 'search/tweets.json?q=' + query + '&count=100',
+      twitterAPI + 'search/tweets.json' + urlInfo.search,
       'GET',
       app.get('token'),
       app.get('tokenSecret'),
       (err, data) => {
         if(err){
           res.status(500).send(err);
+          console.error(err);
           return;
         }
         res.send(castJsonFormat.searchResult(data));

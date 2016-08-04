@@ -10,7 +10,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default class Image extends React.Component {
+class Image extends React.Component {
   handleChange(event) {
     const url = event.target.value
     const checked = event.target.checked
@@ -33,8 +33,8 @@ export default class Image extends React.Component {
   }
 
   render() {
-    const favoriteUrl = 'https://twitter.com/intent/favorite?tweet_id=' + this.props.tweetIdStr
-    const retweetUrl = 'https://twitter.com/intent/retweet?tweet_id=' + this.props.tweetIdStr
+    const favoriteUrl = 'https://twitter.com/intent/favorite?tweet_id=' + this.props.tweetId
+    const retweetUrl = 'https://twitter.com/intent/retweet?tweet_id=' + this.props.tweetId
     return(
       <div className='image'>
         <input
