@@ -1,6 +1,8 @@
 import React from 'react'
 import { findDOMNode } from 'react-dom'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
+import NotificationSystem from 'react-notification-system'
 
 import { search, deleteSearch } from '../../actions/search'
 
@@ -12,6 +14,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    push: path => dispatch(push(path)),
     search: (query, endpoint) => dispatch(search(query, endpoint)),
     deleteSearch: () => dispatch(deleteSearch())
   }
@@ -23,6 +26,20 @@ class SearchForm extends React.Component {
     this.state = {
       placeholder: 'キーワード検索'
     }
+    this._notification = null
+  }
+
+  _addNotification(event) {
+    event.preventDefault()
+    this._notification.addNotification({
+      level: 'info',
+      position: 'tc',
+      message: 'キーワードを入力してください'
+    })
+  }
+
+  componentDidMount() {
+    this._notification = this. refs.notification
   }
 
   handleSubmit(event) {
@@ -31,6 +48,11 @@ class SearchForm extends React.Component {
 
     let query = findDOMNode(this.refs.query).value.trim()
     let firstChar = query.charAt(0)
+
+    if(query.length <= 0) {
+      this._addNotification(event)
+      return
+    }
 
     this.setState({placeholder: query})
 
@@ -45,6 +67,7 @@ class SearchForm extends React.Component {
         query = '?q='+query
         this.props.search(query, 'tweets')
     }
+    this.props.push('/search' + query)
   }
 
   render() {
@@ -53,6 +76,7 @@ class SearchForm extends React.Component {
         className='search_form'
         onSubmit={ event => this.handleSubmit(event) }
       >
+        <NotificationSystem ref='notification' />
         <input
           type='text'
           ref='query'
