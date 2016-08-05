@@ -72,18 +72,15 @@ class SearchForm extends React.Component {
 
   render() {
     return(
-      <form
-        className='search_form'
-        onSubmit={ event => this.handleSubmit(event) }
-      >
+      <form className='search_form' onSubmit={ event => this.handleSubmit(event) }>
         <NotificationSystem ref='notification' />
-        <input
-          type='text'
-          ref='query'
-          placeholder={this.state.placeholder}
-        />
+        <input type='text' ref='query' placeholder={this.state.placeholder}/>
         <button type='submit'>
-          { this.props.isFetching ? <i className='fa fa-spinner fa-pulse' /> : <i className='fa fa-search' /> }
+          {
+            this.props.isFetching ?
+              <i className='fa fa-spinner fa-pulse' /> :
+              <i className='fa fa-search' />
+          }
         </button>
       </form>
     )
