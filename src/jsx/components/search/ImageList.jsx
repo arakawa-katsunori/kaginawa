@@ -90,7 +90,7 @@ class ImageList extends React.Component {
           key={tweet.key}
           tweetId={tweet.id}
           imageUrl={tweet.imageUrl}
-          tweetLink={'https://twitter.com/' + tweet.screenName + '/status/' + tweet.id}
+          tweetLink={`https://twitter.com/${tweet.screenName}/status/${tweet.id}`}
           width={tweet.width * (lineHeight[tweet.line] / defaultHeight) - (margin * 2)}
           height={lineHeight[tweet.line] || defaultHeight}
         />
@@ -102,7 +102,13 @@ class ImageList extends React.Component {
           {tweetNodes}
         </div>
         <div className='images__continue_bar' onClick={ event => this.handleContinue(event) }>
-          { this.props.isFetching ? <i className='fa fa-spinner fa-pulse' /> : this.props.nextResults ? <a>続きを表示</a> : <span/> }
+          {
+            this.props.isFetching ?
+              <i className='fa fa-spinner fa-pulse' /> :
+              this.props.nextResults ?
+                <a>続きを表示</a> :
+                <span/>
+          }
         </div>
       </div>
     )
