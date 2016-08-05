@@ -3,7 +3,7 @@ import ImageList from './ImageList'
 import SaveAsZip from './SaveAsZip'
 import SearchForm from './SearchForm'
 
-export default class App extends React.Component {
+export default class Search extends React.Component {
   constructor(props) {
     super(props)
     this.state = {

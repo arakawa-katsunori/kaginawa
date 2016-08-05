@@ -10,7 +10,7 @@ import thunk from 'redux-thunk'
 import selectedImages from './reducers/selectedImages'
 import fetchedItems from './reducers/search'
 
-import App from './components/search/App'
+import Search from './components/search'
 import Showcase from './components/search/Showcase'
 
 const store = createStore(
@@ -30,8 +30,10 @@ const history = syncHistoryWithStore(browserHistory, store)
 render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path='/' component={App}>
-        <Route path=':imageId' component={Showcase}/>
+      <Route path='/'>
+        <Route path='search'  component={Search}>
+          <Route path=':imageId' component={Showcase}/>
+        </Route>
       </Route>
     </Router>
   </Provider>
