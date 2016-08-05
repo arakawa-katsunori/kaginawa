@@ -7,15 +7,23 @@ const castJsonFormat = require('./helpers/castJsonFormat');
 const routes = (app, passport) => {
   app.get('/', (req, res) => {
     if(passport.session && passport.session.id){
-      fs.readFile('./www/html/index.html', 'utf8', (error, html) => {
-        res.send(html);
-      });
+      res.redirect('/search')
     } else {
       fs.readFile('./www/html/login.html', 'utf8', (error, html) => {
         res.send(html);
       });
     }
   });
+
+  app.get('/search', (req, res) => {
+    if(passport.session && passport.session.id){
+      fs.readFile('./www/html/index.html', 'utf8', (error, html) => {
+        res.send(html);
+      });
+    } else {
+      res.redirect('/')
+    }
+  })
 
   app.get('/auth/twitter', passport.authenticate('twitter'));
 
