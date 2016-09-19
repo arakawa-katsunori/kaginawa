@@ -1,15 +1,15 @@
-'use strict';
+const gulp = require('gulp')
+const plumber = require('gulp-plumber')
+const minimist = require('minimist')
+const webpack = require('webpack-stream')
+var config = require('../configs/development')
 
-const gulp = require('gulp');
-const gulpif = require('gulp-if');
-const uglify = require('gulp-uglify');
-const plumber = require('gulp-plumber');
-const webpack = require('webpack-stream');
-const config = require('../configs/index');
+const env = minimist(process.argv.slice(2)).env
+if(env === 'production') config = require('../configs/production')
 
 gulp.task('script', function () {
-  gulp.src(config.webpack.entry)
+  gulp.src(config.script.src)
     .pipe(plumber())
     .pipe(webpack(config.webpack))
-    .pipe(gulp.dest(config.js.dest)); 
-});
+    .pipe(gulp.dest(config.script.dest))
+})

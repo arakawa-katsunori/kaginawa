@@ -1,11 +1,13 @@
-'use strict';
+const gulp = require('gulp')
+const minimist = require('minimist')
+const nodemon = require('gulp-nodemon')
+const browserSync = require('browser-sync')
+var config = require('../configs/development')
 
-const gulp = require('gulp');
-const nodemon = require('gulp-nodemon');
-const browserSync = require('browser-sync');
-const config = require('../configs/index');
+const env = minimist(process.argv.slice(2)).env
+if(env === 'production') config = require('../configs/production')
 
-gulp.task('nodemon', function(cb) {
+gulp.task('nodemon', cb => {
   var called = false;
   return nodemon({
     script: './server/app.js',
@@ -15,27 +17,28 @@ gulp.task('nodemon', function(cb) {
       NODE_ENV: 'development'
     }
   })
-  .on('start', function onStart() {
-    if (!called) { cb(); }
+  .on('start', () => {
+    if(!called) cb()
     called = true;
   })
-  .on('restart', function onRestart() {
-    setTimeout(function reload() {
-      browserSync.reload({ stream: false });
-    }, 500);
-  });
-});
+  .on('restart', () => {
+    setTimeout( () => {
+      browserSync.reload({ stream: false })
+    }, 500)
+  })
+})
 
-gulp.task('browser-sync', ['nodemon'], function() {
+gulp.task('browser-sync', ['nodemon'], () => {
   browserSync.init({
-    proxy: "http://localhost:3333",
-    port: 4444,
+    proxy: "http://localhost:3000",
+    port: 3333,
     files: ['./www/']
-  });
-});
+  })
+})
 
-gulp.task('watch', ['browser-sync'], function() {
-  gulp.watch(config.js.src, ['script']);
-  gulp.watch(config.pug.src, ['pug']);
-  gulp.watch(config.sass.src, ['sass']);
-});
+gulp.task('watch', ['browser-sync'], () => {
+  gulp.watch(config.template.src, ['template'])
+  gulp.watch(config.script.src, ['script'])
+  gulp.watch(config.style.src, ['style'])
+  gulp.watch(config.assets.src, ['assets'])
+})

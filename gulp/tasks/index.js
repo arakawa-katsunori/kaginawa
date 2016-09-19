@@ -1,26 +1,16 @@
-'use strict';
-
-const gulp = require('gulp');
-
-gulp.task('default', [
-  'pug',
-  'sass',
-  'script',
-  'copy'
-]);
+const gulp = require('gulp')
 
 gulp.task('run', [
-  'pug',
-  'sass',
+  'template',
+  'style',
   'script',
-  'copy',
+  'assets',
   'watch'
-]);
+])
 
 gulp.task('build', [
-  'clean',
-  'pug',
-  'sass',
+  'template',
+  'style',
   'script',
-  'copy'
-]);
+  'assets'
+])

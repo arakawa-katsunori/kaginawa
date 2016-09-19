@@ -33,14 +33,6 @@ class ImageList extends React.Component {
     window.removeEventListener('resize', this.handleResize.bind(this))
     window.removeEventListener('scroll', this.handleScroll.bind(this))
   }
-  componentDidUpdate() {
-    let windowHeight = window.innerHeight
-    let scrollHeight = document.body.offsetHeight
-
-    if (scrollHeight < windowHeight && !this.props.isFetching) {
-      this.props.search(this.props.nextResults, 'tweets')
-    }
-  }
   handleResize() {
     this.setState({boxWidth: window.innerWidth - 1})
   }
