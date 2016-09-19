@@ -7,13 +7,9 @@ const initialState = {
 export default function selectedImages(state = initialState, action = null) {
   switch (action.type) {
     case types.SELECT_IMAGE:
-      return Object.assign({}, state, {
-        links: [ ...state.links, action.link ]
-      })
+      return { links: [ ...state.links, action.link ] }
     case types.UNSELECT_IMAGE:
-      return Object.assign({}, state, {
-        links: state.links.filter( link => link != action.link )
-      })
+      return { links: state.links.filter( link => link != action.link ) }
     default:
       return state
   }
