@@ -1,5 +1,3 @@
-'use strict'
-
 const searchResult = (json) => {
   json = JSON.parse(json)
   let result = { tweets: [], next_results: '' }
@@ -9,15 +7,15 @@ const searchResult = (json) => {
       return true
     }
   })
-  result = JSON.stringify(result)
-  return result
+  return JSON.stringify(result)
 }
 
 const accountResult = (json) => {
   json = JSON.parse(json)
-  let result = {tweets: []}
+  return json
 }
 
 module.exports = {
-  searchResult: searchResult
+  searchResult: searchResult,
+  accountResult: accountResult
 }
