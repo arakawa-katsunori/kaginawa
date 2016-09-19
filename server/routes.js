@@ -1,6 +1,6 @@
 const fs = require('fs')
 const url = require('url')
-const castJsonFormat = require('./helpers/castJsonFormat')
+const castJson = require('./helpers/castJson')
 
 const routes = (app, passport) => {
   app.get('/', (req, res) => {
@@ -49,7 +49,7 @@ const routes = (app, passport) => {
           console.error(err)
           return
         }
-        res.send(castJsonFormat.searchResult(data))
+        res.send(JSON.stringify(castJson.searchResult(data)))
       }
     )
   })

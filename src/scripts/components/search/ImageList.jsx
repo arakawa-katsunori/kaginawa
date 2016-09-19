@@ -56,27 +56,36 @@ class ImageList extends React.Component {
     let currentLine = 1
     let lineHeight = []
 
-    let prepare = this.props.tweets.map( tweet => {
-      let imageWidth = tweet.entities.media[0].sizes.large.w / (tweet.entities.media[0].sizes.large.h / defaultHeight)
-      let result = {
-        key: tweet.id_str,
-        id: tweet.id_str,
-        screenName: tweet.user.screen_name,
-        imageUrl: tweet.entities.media[0].media_url,
-        width: imageWidth,
-        line: currentLine
-      }
-      imageWidthSum += imageWidth
-      if (imageWidthSum >= boxWidth) {
-        lineHeight[currentLine] = defaultHeight * (boxWidth / (imageWidthSum - imageWidth))
-        result.line = currentLine + 1
-        imageWidthSum = imageWidth
-        currentLine++
-      }
-      return result
+    let tweets = this.props.tweets.map(tweet => {
+      let medium = tweet.media.map(media => {
+        let imageWidth = media.sizes.large.w / (media.sizes.large.h / defaultHeight)
+        imageWidthSum += imageWidth
+
+        if (imageWidthSum >= boxWidth) {
+          lineHeight[currentLine] = defaultHeight * (boxWidth / (imageWidthSum - imageWidth))
+          media.line = currentLine + 1
+          imageWidthSum = imageWidth
+          currentLine++
+        }
+
+        return {
+          key: media.media_url,
+          id: tweet.id,
+          screenName: tweet.screen_name,
+          imageUrl: media.media_url,
+          width: imageWidth,
+          line: currentLine
+        }
+      })
+      return medium
     })
 
-    let tweetNodes = prepare.map( tweet => {
+    if (tweets.length > 0) {
+      tweets = tweets.reduce((prev, next) => prev.concat(next))
+    }
+
+    console.log(tweets)
+    let tweetNodes = tweets.map( tweet => {
       return(
         <Image
           key={tweet.key}

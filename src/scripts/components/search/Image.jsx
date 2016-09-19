@@ -40,14 +40,14 @@ class Image extends React.Component {
         <input
           type='checkbox'
           name='selectImages'
-          id={this.props.tweetId}
+          id={this.props.imageUrl}
           value={this.props.imageUrl}
           onChange={ event => this.handleChange(event) }
         />
-        <label htmlFor={this.props.tweetId} className='check_icon'>
+        <label htmlFor={this.props.imageUrl} className='check_icon'>
           <i className='fa fa-check' />
         </label>
-        <label htmlFor={this.props.tweetId}>
+        <label htmlFor={this.props.imageUrl}>
           <img
             ref={'imageId_' + this.props.tweetId}
             src={this.props.imageUrl}
